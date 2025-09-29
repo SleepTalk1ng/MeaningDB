@@ -1,0 +1,72 @@
+/* Стили для страницы результатов поиска */
+.header {
+    background: linear-gradient(135deg, #6e8efb, #a777e3);
+    padding: 1.5rem 0;
+    text-align: center;
+    color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.search-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.results-container {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 0 20px;
+}
+
+.results-info {
+    margin-bottom: 1.5rem;
+    color: #666;
+}
+
+.result-item {
+    background: white;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.result-title {
+    color: #1a0dab;
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    text-decoration: none;
+}
+
+.result-title:hover {
+    text-decoration: underline;
+}
+
+.result-url {
+    color: #006621;
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+}
+
+.result-snippet {
+    color: #545454;
+}
+
+.no-results {
+    text-align: center;
+    padding: 2rem;
+    color: #666;
+}
+
+.home-link {
+    display: block;
+    text-align: center;
+    margin-top: 2rem;
+    color: #6e8efb;
+    text-decoration: none;
+}
+
+.home-link:hover {
+    text-decoration: underline;
+}

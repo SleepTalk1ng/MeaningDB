@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+
+{% block title %}MeaningHUIDB{% endblock %}
+{% block body_class %}home-page{% endblock %}
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', path='/css/search.css') }}">
+{% endblock %}
+
+{% block content %}
+<header class="header">
+    <div class="search-container">
+        <h1 class="title">MeaningsDB</h1>
+        <p class="subtitle">Территория смыслов</p>
+        <form class="search-form" action="/search/" method="get">
+            <input type="search" name="query" class="search-input" placeholder="Введите поисковый запрос..." required>
+            <button type="submit" class="search-button">Найти</button>
+        </form>
+    </div>
+</header>
+
+<main class="content">
+    <h2>Что можно найти?</h2>
+    <div class="features">
+        <div class="feature-card">
+            <h3 class="feature-title">Тему</h3>
+            <p>Хочется чего-то похожего по настроению на Bloodborne или Darkest Dungeon, попробуй запросы - "Лавкрафт" или "космический хоррор"</p>
+        </div>
+        <div class="feature-card">
+            <h3 class="feature-title">Медиа</h3>
+            <p>Интересно о чем все-таки был очередной souls-like? Возможно он уже есть на этом сайте.</p>
+        </div>
+    </div>
+</main>
+
+<footer class="footer">
+    <p>Где найти автора(меня)</p>
+</footer>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    // Простая проверка формы перед отправкой
+    document.querySelector('.search-form').addEventListener('submit', function(e) {
+        const searchInput = this.querySelector('input[name="query"]');
+        if (searchInput.value.trim() === '') {
+            e.preventDefault();
+            searchInput.focus();
+            alert('Пожалуйста, введите поисковый запрос');
+        }
+    });
+    
+    // Динамическое изменение placeholder
+    const placeholders = [
+        "Введите поисковый запрос...",
+        "Например: Cyberpunk 2077",
+        "Например: Нигилизм"
+    ];
+    
+    let currentPlaceholder = 0;
+    const searchInput = document.querySelector('.search-input');
+    
+    function changePlaceholder() {
+        searchInput.placeholder = placeholders[currentPlaceholder];
+        currentPlaceholder = (currentPlaceholder + 1) % placeholders.length;
+    }
+    
+    setInterval(changePlaceholder, 3000);
+</script>
+{% endblock %}

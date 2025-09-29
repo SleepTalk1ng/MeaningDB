@@ -1,0 +1,219 @@
+/* Стили для страницы детальной информации о медиа */
+.media-detail-container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: 350px 1fr;
+    gap: 2rem;
+    align-items: start;
+}
+
+.media-info {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 20px;
+}
+
+.media-poster {
+    width: 100%;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.media-title {
+    font-size: 1.8rem;
+    color: #333;
+    margin-bottom: 0.5rem;
+}
+
+.media-release-date {
+    color: #666;
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.media-platforms {
+    margin-top: 1.5rem;
+}
+
+.platforms-title {
+    font-size: 1.1rem;
+    color: #6e8efb;
+    margin-bottom: 0.8rem;
+}
+
+.platforms-list {
+    list-style: none;
+}
+
+.platform-item {
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+}
+
+.platform-link {
+    color: #1a0dab;
+    text-decoration: none;
+    transition: color 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.platform-link:hover {
+    color: #ff7e5f;
+    text-decoration: underline;
+}
+
+.platform-icon {
+    width: 20px;
+    height: 20px;
+}
+
+.themes-section {
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.themes-title {
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #6e8efb;
+}
+
+.accordion {
+    list-style: none;
+}
+
+.accordion-item {
+    margin-bottom: 1rem;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.accordion-header {
+    background: #f8f9fa;
+    padding: 1.2rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: between;
+    align-items: center;
+    transition: background-color 0.3s;
+}
+
+.accordion-header:hover {
+    background: #e9ecef;
+}
+
+.accordion-title {
+    font-size: 1.1rem;
+    color: #333;
+    margin: 0;
+    flex: 1;
+}
+
+.accordion-icon {
+    width: 16px;
+    height: 16px;
+    transition: transform 0.3s;
+}
+
+.accordion-icon.rotated {
+    transform: rotate(180deg);
+}
+
+.accordion-content {
+    padding: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out, padding 0.3s ease-out;
+    background: white;
+}
+
+.accordion-content.active {
+    max-height: 500px;
+    padding: 1.2rem;
+}
+
+.theme-description {
+    color: #545454;
+    line-height: 1.6;
+}
+
+.theme-examples {
+    margin-top: 1rem;
+    padding-left: 1.5rem;
+}
+
+.theme-example {
+    color: #666;
+    font-style: italic;
+    margin-bottom: 0.5rem;
+    position: relative;
+}
+
+.theme-example:before {
+    content: "•";
+    position: absolute;
+    left: -1rem;
+    color: #ff7e5f;
+}
+
+.back-link {
+    display: inline-flex;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    color: #6e8efb;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.back-link:hover {
+    color: #ff7e5f;
+}
+
+.back-icon {
+    margin-right: 0.5rem;
+}
+
+@media (max-width: 968px) {
+    .media-detail-container {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .media-info {
+        position: static;
+    }
+}
+
+@media (max-width: 480px) {
+    .media-info,
+    .themes-section {
+        padding: 1rem;
+    }
+    
+    .media-title {
+        font-size: 1.5rem;
+    }
+    
+    .accordion-header {
+        padding: 1rem;
+    }
+    
+    .accordion-content.active {
+        padding: 1rem;
+    }
+}

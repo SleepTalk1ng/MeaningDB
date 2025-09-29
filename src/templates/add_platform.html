@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}MeaningDB{% endblock %}
+{% block body_class %}platform-add-page{% endblock %}
+
+
+{% block content %}
+<h2>Форма добавления платформы</h2>
+<form method="POST" action="/media/add_platform/">
+    <label for="media_id">media_id</label>
+    <input type="text" id="media_id" name = "media_id" required>
+    <label for="title">Название платформы(Steam, Netfilx и т.п.)</label>
+    <input type="text" id="title" name = "title" required>
+    <br>
+    <label for = "ref_link">Ссылка</label>
+    <input type="text" id="ref_link" name = "ref_link" required>
+    <br>
+    <button type="submit">Добавить</button>
+</form>
+{% endblock %}

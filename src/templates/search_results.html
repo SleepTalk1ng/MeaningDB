@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block title %}Результаты поиска{% endblock %}
+{% block body_class %}results-page{% endblock %}
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', path='/css/search_results.css') }}">
+{% endblock %}
+
+{% block content %}
+<header class="header">
+    <div class="search-container">
+        <form class="search-form" action="/search/" method="get">
+            <input type="search" name="query" class="search-input" value="{{ query }}" placeholder="Введите поисковый запрос..." required>
+            <button type="submit" class="search-button">Найти</button>
+        </form>
+    </div>
+</header>
+
+<div class="results-container">
+    <div class="results-info">
+        {% if query %}
+            Найдено результатов: {{ results_count }} по запросу "{{ query }}"
+        {% endif %}
+    </div>
+    
+    {% if results %}
+        {% for result in results %}
+            <div class="result-item">
+                <a href="{{ result.url }}" class="result-title">{{ result.title }}</a>
+                <p class="result-snippet">{{ result.snippet }}</p>
+            </div>
+        {% endfor %}
+    {% else %}
+        {% if query %}
+            <div class="no-results">
+                <h2>Ничего не найдено по запросу "{{query}}"</h2>
+                <p>Попробуйте изменить поисковый запрос или проверьте правильность написания.</p>
+            </div>
+        {% endif %}
+    {% endif %}
+    
+    <a href="/" class="home-link">Вернуться на главную</a>
+</div>
+{% endblock %}

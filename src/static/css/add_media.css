@@ -1,0 +1,85 @@
+/* Стили для страницы добавления медиа */
+.media-add-page .content {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 0 20px;
+}
+
+.media-add-page h2 {
+    font-size: 1.8rem;
+    color: #333;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #6e8efb;
+    text-align: center;
+}
+
+.media-add-page form {
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.media-add-page label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #333;
+    font-weight: 500;
+}
+
+.media-add-page input[type="text"],
+.media-add-page input[type="datetime-local"] {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-bottom: 1.5rem;
+    font-size: 1rem;
+    box-sizing: border-box;
+    transition: border-color 0.3s;
+}
+
+.media-add-page input[type="text"]:focus,
+.media-add-page input[type="datetime-local"]:focus {
+    outline: none;
+    border-color: #6e8efb;
+    box-shadow: 0 0 0 2px rgba(110, 142, 251, 0.2);
+}
+
+.media-add-page button {
+    background: #6e8efb;
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s;
+    display: block;
+    width: 100%;
+}
+
+.media-add-page button:hover {
+    background: #5a7de0;
+}
+
+@media (max-width: 768px) {
+    .media-add-page .content {
+        padding: 0 15px;
+    }
+    
+    .media-add-page form {
+        padding: 1.5rem;
+    }
+    
+    .media-add-page h2 {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .media-add-page form {
+        padding: 1rem;
+    }
+}

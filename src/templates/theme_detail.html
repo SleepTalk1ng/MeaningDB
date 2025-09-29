@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}{{ theme.title }} - MeaningDB{% endblock %}
+{% block body_class %}theme-detail-page{% endblock %}
+
+{% block content %}
+
+<h1 class="theme-title">{{theme.title}}</h1>
+{% if theme.description %}
+<div class="theme-description">
+  <h3 class="description-title">Описание</h3>
+  <p>{{ theme.description }}</p>
+</div>
+{% if media %}
+<div class="related-media">
+  {% for media in media %}
+  <a href="/media/{{ media.id }}">{{media.title}}</a>
+  {% endfor %}
+</div>
+{% endif %}
+{% endif %}
+
+{% endblock %}

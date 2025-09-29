@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}MeaningDB{% endblock %}
+{% block body_class %}media-add-page{% endblock %}
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', path='/css/add_media.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<h2>Форма добавления контента</h2>
+<form method = "POST" action="/add_media/">
+  <label for="title">Название</label>
+  <input type="text" id="title" name = "title" required>
+  <br>
+  <label for = "type">Тип</label>
+  <input type="text" id="type" name = "type">
+  <br>
+  <label for = "poster_url">Ссылка на постер/обложку</label>
+  <input type="text" id="poster_url" name = "poster_url">
+  <br>
+  <label for="description">Описание</label>
+  <input type="text" id="description" name = "description">
+  <br>
+  <label for="release_date">Дата выхода</label>
+  <input type="datetime-local" id="release_date" name = "release_date">
+  <br>
+  <button type="submit">Добавить</button>
+</form>
+
+
+{% endblock %}
