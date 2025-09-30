@@ -30,6 +30,17 @@
         </div>
         {% endif %}
 
+        <div class="action-buttons">
+            <a href="/media/{{ media.id }}/edit" class="btn btn-edit">
+                <span>✏️</span>
+                Редактировать
+            </a>
+            <a href="/media/{{ media.id }}/delete" class="btn btn-delete" onclick="return confirm('Вы уверены, что хотите удалить это медиа?')">
+                <span>🗑️</span>
+                Удалить
+            </a>
+        </div>
+
         {% if media.platforms %}
         <div class="media-platforms">
             <h3 class="platforms-title">Где приобрести</h3>

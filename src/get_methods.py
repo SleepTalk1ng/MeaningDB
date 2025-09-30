@@ -73,7 +73,7 @@ async def get_bonds_by_media_id(media_id:int , session:AsyncSession) -> Sequence
 @connection
 async def get_bonds_by_theme_id(theme_id:int , session:AsyncSession) -> Sequence[Bond] | None:
     try:
-        statement = select(Bond).where(Bond.media_id == theme_id)
+        statement = select(Bond).where(Bond.theme_id == theme_id)
         bond_obj = await session.scalars(statement)
         await session.commit()
         return bond_obj.all()

@@ -1,18 +1,22 @@
 {% extends "base.html" %}
 
-{% block title %}MeaningDB{% endblock %}
+{% block title %}Добавить тему - MeaningDB{% endblock %}
 {% block body_class %}theme-add-page{% endblock %}
-
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', path='/css/add_theme.css') }}">
+{% endblock %}
 
 {% block content %}
-<h2>Форма добавления темы</h2>
-<form method="POST" action="/add_theme/">
-    <label for="title">Название</label>
-    <input type="text" id="title" name = "title" required>
-    <br>
-    <label for = "description">Описание</label>
-    <input type="text" id="description" name = "description" required>
-    <br>
-    <button type="submit">Добавить</button>
-</form>
+<div class="content">
+    <h2>Добавление новой темы</h2>
+    <form method="POST" action="/add_theme/">
+        <label for="title">Название темы</label>
+        <input type="text" id="title" name="title" placeholder="Введите название темы" required>
+
+        <label for="description">Описание темы</label>
+        <textarea id="description" name="description" rows="5" style="resize: vertical;" placeholder="Введите описание..." required></textarea>
+
+        <button type="submit">Добавить тему</button>
+    </form>
+</div>
 {% endblock %}

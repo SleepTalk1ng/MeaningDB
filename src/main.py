@@ -1,5 +1,6 @@
 import os.path
 from datetime import datetime
+from http.client import HTTPException
 from typing import Optional
 
 from fastapi import FastAPI, Request, Form
@@ -63,10 +64,19 @@ async def search_results(
         }
     )
 
-@app.get("/autocomplete")
-async def autocomplete(request:Request):
-    pass
+@app.get("/api/search_suggestions")
+async def autocomplete(q:str = ""):
+    media_result = await get_similar_media(q)
+    suggestions = []
+    try:
+        for media in media_result:
+            suggestions.append({"id": media.id, "title": media.title, "type": media.type, "url": f"/media/{media.id}"})
+            print(media.title)
 
+        return suggestions
+
+    except Exception as e:
+        print(e)
 
 @app.get("/media/add_platform/", response_class=HTMLResponse)
 async def add_platform_screen(request: Request):
@@ -91,7 +101,7 @@ async def add_platform(
     return templates.TemplateResponse("add_successful.html", {"request": request})
 
 
-@app.get("/media/add_bond", response_class=HTMLResponse)
+@app.get("/media/add_bond/", response_class=HTMLResponse)
 async def add_bond(request:Request):
     return templates.TemplateResponse("add_bond.html",{"request":request})
 
@@ -176,6 +186,9 @@ async def theme_detail(request: Request, theme_id: int):
     if result is not None:
         for bond in result:
             media_id.append(bond.media_id)
+            print(bond.id)
+    else:
+        print(result)
 
     media_id = set(media_id)
 

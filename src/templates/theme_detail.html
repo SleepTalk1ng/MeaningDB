@@ -2,22 +2,52 @@
 
 {% block title %}{{ theme.title }} - MeaningDB{% endblock %}
 {% block body_class %}theme-detail-page{% endblock %}
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', path='/css/theme_detail.css') }}">
+{% endblock %}
 
 {% block content %}
+<div class="content">
+    <a href="javascript:history.back()" class="back-link">
+        <span class="back-icon">←</span>
+        Назад
+    </a>
 
-<h1 class="theme-title">{{theme.title}}</h1>
-{% if theme.description %}
-<div class="theme-description">
-  <h3 class="description-title">Описание</h3>
-  <p>{{ theme.description }}</p>
-</div>
-{% if media %}
-<div class="related-media">
-  {% for media in media %}
-  <a href="/media/{{ media.id }}">{{media.title}}</a>
-  {% endfor %}
-</div>
-{% endif %}
-{% endif %}
+    <div class="theme-header">
+        <h1 class="theme-title">{{ theme.title }}</h1>
 
+        {% if theme.description %}
+        <div class="theme-description">
+            <p>{{ theme.description }}</p>
+        </div>
+        {% endif %}
+
+        <div class="action-buttons">
+            <a href="/theme/{{ theme.id }}/edit" class="btn btn-edit">
+                <span>✏️</span>
+                Редактировать
+            </a>
+            <a href="/theme/{{ theme.id }}/delete" class="btn btn-delete" onclick="return confirm('Вы уверены, что хотите удалить эту тему?')">
+                <span>🗑️</span>
+                Удалить
+            </a>
+        </div>
+    </div>
+
+    {% if media %}
+    <div class="related-media">
+        <h2 class="related-media-title">Связанные медиа</h2>
+        <div class="media-grid">
+            {% for item in media %}
+            <a href="/media/{{ item.id }}" class="media-card">
+                <h3 class="media-card-title">{{ item.title }}</h3>
+                {% if item.type %}
+                <p class="media-card-type">{{ item.type }}</p>
+                {% endif %}
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+</div>
 {% endblock %}

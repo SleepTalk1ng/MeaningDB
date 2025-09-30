@@ -5,11 +5,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}MeaningDB{% endblock %}</title>
     <link rel="stylesheet" href="{{ url_for('static', path='/css/base.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', path='/css/header.css') }}">
     {% block extra_css %}{% endblock %}
 </head>
 <body class="{% block body_class %}{% endblock %}">
-    {% block content %}{% endblock %}
+    <header class="main-header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <a href="/" class="nav-logo">MeaningDB</a>
 
-    {% block scripts %}{% endblock %}
+                <!-- Форма поиска с автозаполнением -->
+                <div class="nav-search">
+                    <form class="search-form-inline" action="/search/" method="get">
+                        <div class="input-group">
+                            <input type="search" name="query" class="form-control search-input-inline" placeholder="Поиск медиа или тем..." aria-label="Поиск по сайту" autocomplete="off">
+                            <button class="btn btn-primary search-btn-inline" type="submit">
+                                <span class="search-icon">🔍</span>
+                            </button>
+                        </div>
+                    </form>
+    <!-- Контейнер для подсказок должен быть здесь -->
+                    <div class="autocomplete-suggestions"></div>
+                </div>
+
+                <div class="nav-menu">
+                    <a href="/" class="nav-link">Главная</a>
+                    <a href="/add_media/" class="nav-link">Добавить медиа</a>
+                    <a href="/add_theme/" class="nav-link">Добавить тему</a>
+                    <a href="/media/add_platform/" class="nav-link">Добавить платформу</a>
+                    <a href="/media/add_bond/" class="nav-link">Добавить связь</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        {% block content %}{% endblock %}
+    </main>
+
+    {% block scripts %}
+    {% endblock %}
 </body>
 </html>

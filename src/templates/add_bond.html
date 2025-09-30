@@ -1,21 +1,25 @@
 {% extends "base.html" %}
 
-{% block title %}MeaningDB{% endblock %}
+{% block title %}Добавить связь - MeaningDB{% endblock %}
 {% block body_class %}platform-add-page{% endblock %}
-
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', path='/css/add_bond.css') }}">
+{% endblock %}
 
 {% block content %}
-<h2>Форма добавления платформы</h2>
-<form method="POST" action="/media/add_bond/">
-    <label for="media_id">media_id</label>
-    <input type="text" id="media_id" name = "media_id" required>
-    <br>
-    <label for="theme_id">theme_id</label>
-    <input type="text" id="theme_id" name = "theme_id" required>
-    <br>
-    <label for = "description">Описание</label>
-    <input type="text" id="description" name = "description" required>
-    <br>
-    <button type="submit">Добавить</button>
-</form>
+<div class="content">
+    <h2>Добавление связи между медиа и темой</h2>
+    <form method="POST" action="/media/add_bond/">
+        <label for="media_id">ID медиа</label>
+        <input type="text" id="media_id" name="media_id" placeholder="Введите ID медиа" required>
+
+        <label for="theme_id">ID темы</label>
+        <input type="text" id="theme_id" name="theme_id" placeholder="Введите ID темы" required>
+
+        <label for="description">Описание связи</label>
+        <textarea id="description" name="description" rows="5" style="resize: vertical;" placeholder="Введите описание..." required></textarea>
+
+        <button type="submit">Добавить связь</button>
+    </form>
+</div>
 {% endblock %}
