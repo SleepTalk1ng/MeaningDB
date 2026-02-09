@@ -1,8 +1,18 @@
 from sqlalchemy.ext.asyncio import AsyncSession
 from src.database import connection
-from src.models import Media, Theme, Platform, Bond
+from src.models import Media, Theme, Platform, Bond, User
 from asyncio import run
 from datetime import  datetime
+import bcrypt
+
+@connection
+async def create_user(email:str, password:str, nickname:str, session:AsyncSession ,permission:int = 0, photo:str = ""):
+    hased_pass = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
+    user = User(email = email, password = hased_pass.decode("utf-8"), nickname = nickname, photo = photo, permission = permission)
+    session.add(user)
+    await session.commit()
+    return user.id
+
 
 @connection
 async def create_media(title:str, session:AsyncSession ,type:str = "", poster_url:str = "", description:str = "", release_date:datetime = None) -> int:

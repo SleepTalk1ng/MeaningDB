@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block title %}Регистрация - MeaningDB{% endblock %}
+{% block body_class %}auth-page{% endblock %}
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', path='/css/auth.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="auth-container">
+    <div class="auth-card">
+        <h1 class="auth-title">Создать аккаунт</h1>
+        
+        <form id="auth-form">
+            <div class="form-group">
+                <label for="username" class="form-label">Имя пользователя</label>
+                <input type="text" id="username" name="username" class="form-input" required placeholder="Введите имя пользователя">
+            </div>
+            
+            <div class="form-group">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" id="email" name="email" class="form-input" required placeholder="Введите ваш email">
+            </div>
+            
+            <div class="form-group">
+                <label for="password" class="form-label">Пароль</label>
+                <input type="password" id="password" name="password" class="form-input" required placeholder="Придумайте пароль">
+                <div class="password-hint">Минимум 8 символов</div>
+            </div>
+            
+            <div class="form-group">
+                <label for="confirm_password" class="form-label">Подтвердите пароль</label>
+                <input type="password" id="confirm_password" name="confirm_password" class="form-input" required placeholder="Повторите пароль">
+            </div>
+            
+            <button type="submit" class="btn-auth">Зарегистрироваться</button>
+        </form>
+        <div id="result" name="result"></div>
+        <div class="auth-links">
+            <p>Уже есть аккаунт? <a href="/login/" class="auth-link">Войти</a></p>
+        </div>
+    </div>
+</div>
+<script src="{{ url_for('static', path='/scripts/register.js') }}"></script>
+{% endblock %}

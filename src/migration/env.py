@@ -12,7 +12,7 @@ from alembic import context
 sys.path = ['', '..'] + sys.path[1:]
 
 from src.database import Base, DATABASE_URL
-from src.models import Media, Theme, Platform, Bond
+from src.models import Media, Theme, Platform, Bond, User
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
 config = context.config

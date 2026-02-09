@@ -3,17 +3,24 @@ from datetime import datetime
 from http.client import HTTPException
 from typing import Optional
 
+from pydantic import BaseModel
 from fastapi import FastAPI, Request, Form
-from fastapi.responses import HTMLResponse
+from fastapi.responses import HTMLResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
+from fastapi.middleware.cors import CORSMiddleware
 from starlette.templating import Jinja2Templates
 
-from src.add_methods import create_media, create_theme, create_platform, create_bond
+from src.add_methods import create_media, create_theme, create_platform, create_bond, create_user
 from src.get_methods import get_media_by_id, get_theme_by_id, get_similar_media, get_similar_theme, \
     get_platforms_by_media_id, get_bonds_by_media_id, get_bonds_by_theme_id
-from src.models import Media, Theme, Platform
+from src.models import Media, Theme, Platform, User
 
 app = FastAPI(title="MNDB")
+
+class UserData(BaseModel):
+    email: str
+    password: str
+    nickname: str
 
 current_file_path = os.path.dirname(__file__)
 static_dir = os.path.join(current_file_path, "static")
@@ -22,6 +29,22 @@ templates_dir = os.path.join(current_file_path, "templates")
 app.mount("/static", StaticFiles(directory=static_dir), name="static")
 
 templates = Jinja2Templates(directory=templates_dir)
+
+origins = [
+    "http://localhost.tiangolo.com",
+    "https://localhost.tiangolo.com",
+    "http://localhost",
+    "http://localhost:8080",
+]
+
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 @app.get("/", response_class=HTMLResponse)
 async def read_root(request: Request):
@@ -156,7 +179,20 @@ async def media_detail(request: Request, media_id: int):
     )
 
 
+@app.get("/reg/", response_class=HTMLResponse)
+async def add_user_screen(request: Request):
+    return templates.TemplateResponse("register.html", {"request" : request})
 
+@app.post("/api/v1/reg/", response_class=JSONResponse)
+async def api_add_user(data: UserData):
+    user_id = await create_user(data.email, data.password, data.nickname,permission=1)
+    if user_id is not None:
+        result = {"user_id" : f"{user_id}", "msg":"registration success"}
+        return result
+    else:
+        result = {"msg":"registration failed"}
+        return result
+    
 
 
 @app.get("/add_media/", response_class=HTMLResponse)

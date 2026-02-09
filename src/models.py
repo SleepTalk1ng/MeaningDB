@@ -4,6 +4,13 @@ from sqlalchemy.orm import Mapped, mapped_column
 from src.database import Base,str_an, int_an
 
 
+class User(Base):
+    email: Mapped[str] = mapped_column(unique=True)
+    password: Mapped[str_an]
+    permission: Mapped[int_an]
+    nickname: Mapped[str_an]
+    photo: Mapped[str_an]
+
 class Media(Base):
     title: Mapped[str_an]
     type: Mapped[str_an]
